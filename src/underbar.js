@@ -54,9 +54,9 @@ var _ = { };
   // is not present in the array.
   _.indexOf = function(array, target){
     var index = -1;
-    _.each(array, function(item, key, array){
+    _.each(array, function(item){
       if (item === target && index === -1){
-        index = key;
+        index = arguments[1];
       }
     });
     return index;
@@ -67,11 +67,16 @@ var _ = { };
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, iterator) {
+    var arr = [];
+    _.each(collection, function(item){
+      iterator(item) && arr.push(item);
+    });
+  return arr;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, iterator) {
-    // TIP: see if you can re-use _.select() here, without simply
+    // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
   };
 
