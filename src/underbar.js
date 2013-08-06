@@ -150,6 +150,11 @@ var _ = { };
   //   }, 0); // should be 6
   //
   _.reduce = function(collection, iterator, initialValue) {
+    var previousValue = initialValue || 0;
+    _.each(collection, function(item){
+      previousValue = iterator(previousValue, item);
+    });
+    return previousValue;
   };
 
   // Determine if the array or object contains a given value (using `===`).
