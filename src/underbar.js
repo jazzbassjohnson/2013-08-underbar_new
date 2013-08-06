@@ -173,9 +173,17 @@ var _ = { };
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
+    // var k = 0;
+    // if (iterator == undefined){
+    //   return true;
+    // }
+    iterator = iterator || function(value){return value};
+    return _.reduce(collection, function(total, value){
+      return !!total && !!iterator(item);
+    }, true);
   };
 
-  // Determine whether any of the elements pass a truth test. If no iterator is
+ // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
