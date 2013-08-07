@@ -232,8 +232,9 @@ var _ = { };
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-    var extObj = arguments[i];
+    var extended = 
     for (var i = 1; i < arguments.length -1; i++){
+      var extObj = arguments[i];
       for (var key in extObj){
         obj[key] = extObj[key];
       }
