@@ -202,7 +202,14 @@ var _ = { };
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
     iterator = iterator || function(val){return val};
-    return !(_.every(collection, iterator));
+    if (collection.length ===0){
+      return false;
+    }
+    else{
+      return !(_.every(collection, function(item){
+        return !iterator(item);
+      }));
+    }
   };
 
 
@@ -225,6 +232,13 @@ var _ = { };
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    var extObj = arguments[i];
+    for (var i = 1; i < arguments.length -1; i++){
+      for (var key in extObj){
+        obj[key] = extObj[key];
+      }
+    }
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
