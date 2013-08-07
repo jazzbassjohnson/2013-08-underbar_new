@@ -177,16 +177,32 @@ var _ = { };
     // if (iterator == undefined){
     //   return true;
     // }
+    // stupid code that doesn't work, but may someday!
     iterator = iterator || function(value){return value};
     return _.reduce(collection, function(total, value){
-      return !!total && !!iterator(item);
+      return !!total && !!iterator(value);
     }, true);
+    /* alternative, less elegant, but simpler code
+    var check = true;
+    iterator = iterator || function(val){return val};
+    for (var i = 0; i < collection.length; i++){
+      if (check && iterator(collection[i]) == true){
+        check = true;
+      }
+      else{
+        check = false;
+      }
+    }
+    return check;*/
   };
+  
 
  // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    iterator = iterator || function(val){return val};
+    return !(_.every(collection, iterator));
   };
 
 
